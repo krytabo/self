@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>電子刊物 E-JOURNAL</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <link rel="icon" href="assets/images/favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
+
+  <!-- UIkit -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+
+  <!-- buefy -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+  <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
+
+  <!-- 電子書 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/edm/flipbook.style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/edm/font-awesome.css">
+
+</head>
+
+<body>
+  <!-- Wrapper -->
+  <div id="app">
+
+    <!--=====================================-->
+    <!--                                     -->
+    <!--                header               -->
+    <!--                                     -->
+    <!--=====================================-->
+    <div class="main_header">
+      <div class="level is-mobile">
+        <!-- Logo-->
+        <div class="level-left">
+          <div class="header-logo">
+            <a href="index.html"> <img src="assets/images/EZ-LOGO.svg" alt=""></a>
+          </div>
+        </div>
+
+        <!-- 會員登入 暫時放著，未確定是否需要 -->
+        <div class="level-right">
+          <b-button icon="fas fa-user-circle" type="text" style="color:#fff;background-color: rgba(51, 51, 51, 0);"
+            onclick="window.location.href='#'"> 登入/註冊
+          </b-button>
+        </div>
+      </div>
+    </div>
+    <!--header end-->
+
+    <!--=====================================-->
+    <!--                                     -->
+    <!--                 main                -->
+    <!--                                     -->
+    <!--=====================================-->
+    <div class="main">
+
+      <!--=====================================-->
+      <!--=              banner               =-->
+      <!--=====================================-->
+      <section id="hero">
+        <!-- banner背景 -->
+        <div class="uk-background-fixed uk-background-center-center uk-background-cover banner-bg">
+        </div>
+        <!-- banner新書介紹 -->
+        <div class="banner">
+          <div class="header-container">
+            <div class="header-content container row">
+              <div class="col-md-12 title-center-content">
+                <!-- 左邊介紹內容 -->
+                <div uk-scrollspy="cls: uk-animation-slide-left; delay: 300;repeat: true">
+                  <div class="col-md-6 title-text animation-right text-white banner-title">
+                    <h2>建築的夢想：龐畢度中心建築師理察‧羅傑斯自傳</h2>
+                    <p>2007普立茲克獎建築獎得主∣威尼斯建築雙年展終身成就獎
+                      英國左派建築師Richard Rogers
+                      情感豐沛的自傳&回憶錄
+                    </p>
+                    <div style="margin-top: 20px;">
+                      <b-button type="is-app" class="book">開始閱讀 →</b-button>
+                    </div>
+                  </div>
+                </div>
+                <!-- 右邊照片 -->
+                <div class="col-md-6 title-product animation-left"
+                  uk-scrollspy="cls: uk-animation-slide-right; delay: 300;repeat: true">
+                  <span>E-JOURNAL</span>
+                  <img src="https://cdn.readmoo.com/cover/jb/qqpdree_210x315.jpg?v=1584524444" alt=""
+                    class="animated thumb book">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 滑鼠icon -->
+        <a href="#target" uk-scroll>
+          <div class='icon-scroll' style="position: absolute;bottom:30px">
+          </div>
+        </a>
+      </section>
+      <!-- banner end -->
+
+
+      <!--=====================================-->
+      <!--               content               -->
+      <!--=====================================-->
+      <div class="main_content" id="target">
+
+        <div class="level is-mobile">
+          <div class="level-left">
+            <p style="color: #333;font-size: 14pt;line-height: 40px;">電子書一覽</p>
+          </div>
+          <!-- 搜尋開始 -->
+          <div class="level-right">
+            <b-button type="is-app" class="pull-right" rounded uk-toggle="target: #modal-close-default" uk-toggle><i
+                class="fas fa-search"></i></b-button>
+          </div>
+          <!-- 搜尋框 -->
+          <div id="modal-close-default" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <button class="uk-modal-close-default" type="button" uk-close></button>
+              <b-input placeholder="請輸入關鍵字" icon="magnify" icon-clickable style="margin: 10px 0;">
+              </b-input>
+              <b-datepicker placeholder="請選擇上傳日期" v-model="dates" range>
+              </b-datepicker>
+              <div class="uk-modal-footer uk-text-right">
+                <b-button type="is-app" class="uk-modal-close-default">搜尋</b-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 搜尋結束 -->
+
+        <!-- 電子書列表開始 -->
+        <div class=" collection-slide "
+          uk-scrollspy="cls: uk-animation-fade; target: .listItem-box; delay: 100; repeat: true">
+          <div class="row">
+            <div class="slider-container" data-size="true">
+              <div class="rm-book-thumbnails">
+
+
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <div class="new"> New </div>
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/jb/qqpdree_210x315.jpg?v=1584524444" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">建築的夢想：龐畢度中心建築師理察‧羅傑斯自傳</a></h4>
+                    <p>2007普立茲克獎建築獎得主∣威尼斯建築雙年展終身成就獎
+                      英國左派建築師Richard Rogers
+                      情感豐沛的自傳&回憶錄
+                    </p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <div class="new"> New </div>
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/79/f8bfhed_210x315.jpg?v=0" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">天空之園 綠屋頂二部曲 綠屋頂、綠牆、高樓綠化大趨勢</a></h4>
+                    <p>綠色大趨勢！消費者、設計師、園藝景觀從業人員的實用立體花園指南 不開冷氣，就能讓室溫下降3℃！ 我家屋頂也能變庭園嗎？
+                      綠化同時如何避免漏水與積水？</p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/bb/79l6kaf_210x315.jpg?v=1496304699" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">建築之間：公共空間生活</a></h4>
+                    <p>
+                      《建築之間：公共空間生活》是建築設計、地景設計、以及都市設計專業領域重要的經典之作，反思現代建築與現代都市規劃的問題，從人與環境研究來提出批評，關心移動在建築物間的人們，也督促人們對於理解公共空間的細微特質。
+                    </p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/h9/f8g8o9b_460x580.jpg?v=0" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">校園雜誌雙月刊2020年5、6月號：隔離時代，如何教會？</a></h4>
+                    <p>
+                      當COVID-19（又稱新冠肺炎、武漢肺炎）疫情擴散，「保持社交距離」與「避免群聚」成為所有人的共同關切，我們不再能夠面對面地聚集、頌讚、聆聽聖言、領受聖餐、傳揚福音，教會如何還是教會？更進一步來說，在疫情擴散之時，身處於世界之中的教會又該有怎樣的行動與回應呢？透過歷史的回顧、第一線牧者、神學工作者、哲學工作者、科學家與醫生的分享，本期特稿期待與讀者一同探索「隔離時代，如何教會？」，讓這次的挑戰，成為教會重尋使命的時刻，重新思考「如何為了世界而存在」（the
+                      church for the world）。</p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/fg/l77fmcn_460x580.jpg?v=0" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">天下雜誌：工業4.0專刊</a></h4>
+                    <p>當人口老、勞力少又貴，而市場需求變化快又短的挑戰來臨，曾經錯過九０年代IT革命的德國，不願意再錯失機會，決定挺身而進。</p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/fh/bgalmae_210x315.jpg?v=1535958312" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">讀建築：從柯比意到安藤忠雄，百大案例看懂建築的十大門道</a></h4>
+                    <p>國際建築大獎「文森斯庫里獎」得主，當代建築大師黎辛斯基一次解構建築全貌。</p>
+                  </div>
+                </li>
+
+                <li class="listItem-box">
+                  <div class="thumbnail">
+                    <a class="book-cover book">
+                      <img src="https://cdn.readmoo.com/cover/pm/rjmouql_210x315.jpg?v=1559275266" alt="">
+                    </a>
+                  </div>
+                  <div class="caption">
+                    <h4><a class="book">幸福建築</a></h4>
+                    <p>每一種建築樣式，都是一種對幸福的理解 除了幫我們遮風擋雨， 建築也邀請我們成為獨特的自己。 透過建築，我們看到理想的人生。</p>
+                  </div>
+                </li>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 電子書列表結束 -->
+      </div>
+      <!-- content end -->
+    </div>
+    <!--main end-->
+
+    <!--=====================================-->
+    <!--                                     -->
+    <!--                footer               -->
+    <!--                                     -->
+    <!--=====================================-->
+    <div class="content flex">
+      <small>Company Name &copy; 2020 | by 億集創見科技有限公司</small>
+    </div>
+    <!--footer end-->
+  </div>
+
+  <!-- Demo Data -->
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {},
+    })
+  </script>
+
+  <!-- javaScripts -->
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="assets/js/isotope-docs.min.js"></script>
+
+  <!-- 電子書 -->
+  <script src="assets/js/edm/flipbook.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".book").flipBook({
+        pages: [{
+            src: "assets/images/edm/0.jpg",
+            thumb: "assets/images/edm/0.jpg",
+            title: "Cover"
+          },
+          {
+            src: "assets/images/edm/1.jpg",
+            thumb: "assets/images/edm/1.jpg",
+            title: "Page two"
+          },
+          {
+            src: "assets/images/edm/2.jpg",
+            thumb: "assets/images/edm/2.jpg",
+            title: "Page three"
+          },
+          {
+            src: "assets/images/edm/3.jpg",
+            thumb: "assets/images/edm/3.jpg",
+            title: "Page four"
+          },
+          {
+            src: "assets/images/edm/4.jpg",
+            thumb: "assets/images/edm/4.jpg",
+            title: "Page five"
+          },
+          {
+            src: "assets/images/edm/5.jpg",
+            thumb: "assets/images/edm/5.jpg",
+            title: "Last"
+          }
+        ],
+        viewMode: '3d',
+        layout: 3,
+        icons: 'material',
+        skin: "dark",
+        backgroundColor: '#666',
+        lightboxBackground: '#333333da',
+        hideOnMobile: true,
+        menuMargin: 10,
+        menuBackground: 'none',
+        menuShadow: 'none',
+
+        menuOverBook: true,
+        btnRadius: 40,
+        btnMargin: 4,
+        btnSize: 14,
+        btnPaddingV: 16,
+        btnPaddingH: 16,
+        btnBackground: "rgba(0,0,0,.3)",
+        btnColor: '#fff',
+
+        sideBtnRadius: 5,
+        sideBtnSize: 50,
+        sideBtnBackground: "rgba(0,0,0,.7)",
+        sideBtnColor: '#CCEA7F',
+        lightBox: true,
+      });
+
+    })
+  </script>
+
+</body>
+
+</html>
